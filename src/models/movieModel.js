@@ -5,14 +5,17 @@ export const create = async (data) => {
 };
 
 export const findAll = async (filters = {}) => {
-    const { title, description, duration, genre, rating } = filters;
+    const { title, description, duration, genre, rating, available } =
+        filters;
     const where = {};
+
 
     if (title) where.title = { contains: title, mode: 'insensitive' };
     if (description) where.description = { contains: description, mode: 'insensitive' };
     if (genre) where.genre = { contains: genre, mode: 'insensitive' };
     if (duration !== undefined) where.duration = parseInt(duration);
     if (rating !== undefined) where.rating = parseFloat(rating);
+    if (available !== undefined) where.available = available;
 
     return await prisma.movie.findMany({
         where,
