@@ -27,6 +27,12 @@ export const create = async (req, res) => {
         const { title, description, duration, genre, rating, Rating, available, avaiable } =
             req.body;
 
+        if (title.trim().length < 3) {
+            return res.status(400).json({
+                error: 'O título é obrigatório e deve conter no mínimo 3 caracteres.',
+            });
+        }
+
         if (!title) return res.status(400).json({ error: 'O title é obrigatório!' });
         if (!duration) return res.status(400).json({ error: 'O duration é obrigatório!' });
         if (!genre) return res.status(400).json({ error: 'O genre é obrigatório!' });
