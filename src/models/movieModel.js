@@ -9,14 +9,16 @@ export const findAll = async (filters = {}) => {
         filters;
     const where = {};
 
-if (minRating !== undefined) {
-    where.rating = {
-        gte: parseFloat(minRating), };
-}
+    if (minRating !== undefined) {
+        where.rating = {
+            gte: parseFloat(minRating),
+        };
+    }
 
     if (maxDuration !== undefined) {
         where.duration = {
-            lte: parseInt(maxDuration), };
+            lte: parseInt(maxDuration),
+        };
     }
     if (title) where.title = { contains: title, mode: 'insensitive' };
     if (description) where.description = { contains: description, mode: 'insensitive' };
